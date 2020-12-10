@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>The Meme Generator</title>
+</head>
+
+<body class="canvas-body" onload="createCanvas()">
+    <div class="main-container flex space-between align-center">
+        <header class="main-header main-layout flex space-between align-center">
+            <div class="header-logo">Logo</div>
+
+            <ul class="main-nav clean-list">
+
+                <li><a href="#">Gallery</a></li>
+                <li><a href="#">About</a></li>
+
+            </ul>
+
+        </header>
+
+        <div class="canvas-container">
+            <canvas id="my-canvas" height="546" width="476" onclick="draw(event)"></canvas>
+        </div>
+        <div class="tool-bar">
+            <input type="text">
+        </div>
+    </div>
+
+    <script src="js/storage-service.js"></script>
+    <script src="js/gallery-service.js"></script>
+    <script src="js/gallery-controller.js"></script>
+    <script src="js/canvas.js"></script>
+</body>
+
+</html>
