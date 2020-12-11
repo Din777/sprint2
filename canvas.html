@@ -11,12 +11,8 @@
 <body onload="createCanvas()">
     <div class="main-container">
         <div class="nav-bar flex space-between">
-            <div class="nav-logo">
+            <div class="nav-logo logo">memegen</div>
 
-                <img src="img/layer-2.jpg" srcset="img/layer-2@2x.jpg 2x,
-             img/layer-2@3x.jpg 3x" class="layer-2">
-
-            </div>
             <ul class="main-nav clean-list">
 
                 <li><a href="#">Gallery</a></li>
@@ -30,14 +26,53 @@
                 <canvas id="my-canvas" height="500" width="500" onclick="draw(event)"></canvas>
             </div>
             <div class="side-bar">
-                <input type="text" value="enter text" onclick="drawText(this.value)">
+                <input type="text" value="" onclick="drawText(this.value)">
+                <div class="row1">
+                    <button class="up-down-btn">⬆⬇</button>
+                    <button class="add-btn">➕</button>
+                    <button class="delete-btn">🗑</button>
+                </div>
+                <div class="row2">
+                    <button class="increase-btn">✢</button>
+                    <button class="decrease-btn">✢</button>
+                    <button class="txt-left-btn">✢</button>
+                    <button class="txt-center-btn">✢</button>
+                    <button class="txt-right-btn">✢</button>
+                </div>
+                <div class="row3">
+                    <label for="fontList"></label>
+                <select id="fontList" name="fontList" class="combobox" onchange=setFont(fontList.value)>
+                    <option value="Impact">Impact</option>
+                    <option value="Langar">Langar</option>
+                    <option value="Montserrat">Montserrat</option>
+                    <option value="Montserrat-thin">Montserrat-thin</option>
+                </select>
+                
+                <button class="txt-shadow-btn">✢</button>
+                <button class="chng-color-btn">✢</button>
+            </div>
+            <div class="row4">
+                <label for="stickers"></label>
+                <select id="stickers" name="stickers" class="sticker-box" onchange=setSticker(stickers.value)>
+                    <option value="sticker1">🎓</option>
+                    <option value="sticker2">🎁</option>
+                    <option value="sticker3">🎀</option>
+                </select>
+            </div>
+            <button class="share-btn">Share</button>
+            <!-- <button class="clear-btn" onclick="clearCanvas()">Clear</button>
+            <button class="download-btn">Download</button> -->
+
             </div>
         </div>
-        <div class="bottom">
-            <div class="bottom-logo">logo</div>
+        <div class="footer">
+            <div class="footer-logo logo">memegen</div>
             <small>all rights reserved 2019</small>
         </div>
     </div>
+    <script src="js/storage-service.js"></script>
+    <script src="js/gallery-controller.js"></script>
+    <script src="js/gallery-service.js"></script>
     <script src="js/canvas.js"></script>
 
 </body>

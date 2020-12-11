@@ -7,6 +7,9 @@ var gImgs;
 
 _createImgs()
 
+
+
+
 function getImgsForDisplay() {
     return gImgs;
 }
@@ -41,7 +44,7 @@ function _createImgs() {
     _saveImgsToStorage()
 }
 
-function  _saveImgsToStorage() {
+function _saveImgsToStorage() {
     saveToStorage(STORAGE_KEY, gImgs);
 }
 

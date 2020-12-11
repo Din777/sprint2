@@ -2,18 +2,33 @@
 
 var gCanvas;
 var gCtx;
-var gBcgColor = 'pink';//url: img/1.jpg
 var gPaintColor = 'black';
-var gCurrShape = 'line';
+// var gCurrShape = 'line';
+var currImgSrc = 'img/kot-1.jpg';
+
+var gMeme = {
+  selectedImgId: 0,
+  selectedLineIdx: 0,
+  lines: [
+      {
+          txt: '',
+          size: 20,
+          align: 'center',
+          color: gPaintColor
+      }
+  ]
+}
 
 
 function createCanvas() {
-    gCanvas = document.querySelector('#my-canvas');
-    gCtx = gCanvas.getContext('2d');
-
-    // gCtx.fillStyle = gBcgColor;
-    // gCtx.fillRect(0, 0, gCanvas.width, gCanvas.height);
-    make_base();
+  // console.log('creating');
+  // var currMeme = getCurrMeme();
+  // console.log(currMeme);
+  gCanvas = document.querySelector('#my-canvas');
+  gCtx = gCanvas.getContext('2d');
+  // gCtx.fillStyle = gBcgColor;
+  // gCtx.fillRect(0, 0, gCanvas.width, gCanvas.height);
+  makeBase();
 }
 
 // function drawRect(x, y, xEnd = 400, yEnd = 300) {
@@ -24,23 +39,34 @@ function createCanvas() {
 
 // }
 
-function make_base() {
-  var base_image = new Image();
-  base_image.src = 'img/1.jpg';
-    base_image.onload = function(){
-    gCtx.drawImage(base_image, 0, 0);
+function makeBase() {
+  var baseImage = new Image();
+  baseImage.src = currImgSrc;
+  baseImage.onload = function () {
+    gCtx.drawImage(baseImage, 0, 0);
   }
+}
+
+function drawText(text, x = 250, y = 50) {
+  gCtx.lineWidth = '3'
+  gCtx.strokeStyle = 'white'
+  gCtx.fillStyle = 'black'
+  gCtx.font = '44px Impact'
+  gCtx.textAlign = 'center'
+  gCtx.fillText(text, x, y)
+  gCtx.strokeText(text, x, y)
 }
 
 
 
-function drawText(text, x=250, y=100) {
-    gCtx.lineWidth = '1.5'
-    gCtx.strokeStyle = 'white'
-    gCtx.fillStyle = 'black'
-    gCtx.font = '42px Impact'
-    gCtx.font = 'italic small-caps 900 40px serif'
-    gCtx.textAlign = 'center'
-    gCtx.fillText(text, x, y)
-    gCtx.strokeText(text, x, y)
+function setMeme(imgInfo) {
+  console.log('imgInfo.data', imgInfo.data);
+  gMeme.selectedImgId = imgInfo.querySelector('img').data;
+  console.log('gMeme on set', gMeme);
+}
+
+
+function getCurrMeme() {
+  console.log('gMeme', gMeme);
+  return gMeme;
 }
