@@ -5,40 +5,28 @@ function onInit() {
     // createCanvas()
 };
 
-function renderImgs() {
-    var imgs = getImgsForDisplay();
-    console.log('var imgs', imgs);
-    var elGrid = document.querySelector('.grid-container');
-    console.log('elGrid', elGrid);
-    imgs.forEach(function (img) {
-        console.log('img', img);
-        console.log('img.imgUrl:', img.imgUrl);
-        elGrid.querySelector('img').data = img.id;
-        console.log(elGrid.querySelector('img').data);
-        elGrid.querySelector('img').src = img.imgUrl;
-    });
-}
-
-// function renderCanvas(elImg) {
-//     console.log('elImg:', elImg);
-//     console.log('elImg.src', elImg.src);
-//     createCanvas(elImg.src);
+// function renderImgs() {
+//     var imgs = getImgsForDisplay();
+//     var elGrid = document.querySelector('.grid-container');
+//     imgs.forEach(function (img) {
+//         elGrid.querySelector('img').data = img.id;
+//         elGrid.querySelector('img').src = img.imgUrl;
+//     });
 // }
 
-function chooseMeme(elImg) {
-    console.log('hello');
-    setMeme(elImg); 
+
+function renderImgs() {
+    var imgs = getImgsForDisplay();
+    var strHtmls = imgs.map(function (img) {
+        return `
+    <a href="canvas.html" class="hm-link" onclick="saveCurrEl(${img.id})"><img src="${img.imgUrl}" alt="" data="${img.id}" class="gallery-img"></a>
+    `
+    })
+    console.log(strHtmls);
+    document.querySelector('.grid-container').innerHTML = strHtmls.join('')
 }
 
-var gMeme = {
-    selectedImgId: 5,
-    selectedLineIdx: 0,
-    lines: [
-    {
-    txt: 'I never eat Falafel',
-    size: 20,
-    align: 'left',
-    color: 'red'
-    }
-    ]
-   }
+
+function saveCurrEl(currEl) {
+   savecCurrImgsToStorage(currEl);
+}

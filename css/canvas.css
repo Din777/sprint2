@@ -39,16 +39,17 @@ img {
     color: #ffffff;
     font-family: Langar, serif;
     letter-spacing: 2.5px;
+    margin-top: 15px;
 }
 
 button {
     width: 60px;
     height: 60px;
-    padding: 0;
+    padding: 8px;
     border-radius: 10px;
     background-color: #ffffff;
     color: black;
-    font-size: 39px;
+    /* font-size: 20px; */
     border: 0;
 }
 
@@ -70,6 +71,7 @@ button:hover {
 
 .nav-bar .main-nav li {
     margin-inline-end: 85px;
+    margin-top: 24px;
     font-family: Montserrat, sans-serif;
     font-size: 19px;
     color: #ffffff;
@@ -109,7 +111,7 @@ input {
 }
 
 .delete-btn {
-    font-weight: bold;
+    /* font-weight: bold; */
     /* background-image: url(../icons/trash.png); */
 }
 

@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <title>The Meme Generator</title>
 </head>
+
 <body onload="onInit()">
     <div class="grid-container">
-        <a href="canvas.html"  class="hm-link"  onclick="chooseMeme(this)"><img src="" alt="" class="gallery-img"></a>
-        <!-- <a href="#"  class="hm-link"  onclick="chooseMeme(this)"><img src="" alt="" data="" class="gallery-img"></a> -->
-        <!-- <img src="" alt="" onclick="renderCanvas(this)">
-        <img src="" alt=""> -->
-        <!-- <img src="img/8.jpg" alt=""> -->
+        <a href="canvas.html" class="hm-link" onclick="saveCurrEl(this)"><img src="" alt="" data="" class="gallery-img"></a>
+        
+        <!-- <a href="#"  class="hm-link"  onclick="saveCurrEl(this)"><img src="" alt="" data="" class="gallery-img"></a> -->
+        
     </div>
 
     <script src="js/storage-service.js"></script>
@@ -20,6 +21,7 @@
     <script src="js/gallery-controller.js"></script>
     <script src="js/canvas.js"></script>
     <script src="canvas.html"></script>
-    
+
 </body>
+
 </html>

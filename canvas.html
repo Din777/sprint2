@@ -8,14 +8,14 @@
     <title>Document</title>
 </head>
 
-<body onload="createCanvas()">
+<body onload="onInitCanvas()">
     <div class="main-container">
         <div class="nav-bar flex space-between">
             <div class="nav-logo logo">memegen</div>
 
             <ul class="main-nav clean-list">
 
-                <li><a href="#">Gallery</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="#">About</a></li>
 
             </ul>
@@ -23,44 +23,44 @@
 
         <div class="middle">
             <div class="canvas-container">
-                <canvas id="my-canvas" height="500" width="500" onclick="draw(event)"></canvas>
+                <canvas id="my-canvas" height="500" width="500" letter-spacing="2.5px" onclick="draw(event)"></canvas>
             </div>
             <div class="side-bar">
-                <input type="text" value="" onclick="drawText(this.value)">
+                <input type="text" value="" class="input-txt-box" onkeyup="txtToCanvasEvent(this.value)">
                 <div class="row1">
-                    <button class="up-down-btn">⬆⬇</button>
-                    <button class="add-btn">➕</button>
-                    <button class="delete-btn">🗑</button>
+                    <button class="up-down-btn"><img src=icons/up-and-down.png></button>
+                    <button class="add-btn"><img src=icons/add.png></button>
+                    <button class="delete-btn" onclick="delBtnEvent()"><img src=icons/trash.png></button>
                 </div>
                 <div class="row2">
-                    <button class="increase-btn">✢</button>
-                    <button class="decrease-btn">✢</button>
-                    <button class="txt-left-btn">✢</button>
-                    <button class="txt-center-btn">✢</button>
-                    <button class="txt-right-btn">✢</button>
+                    <button class="increase-btn"><img src=icons/increase-font-icon.png></button>
+                    <button class="decrease-btn"><img src=icons/decrease-font-icon.png></button>
+                    <button class="txt-left-btn"><img src=icons/align-to-left.png></button>
+                    <button class="txt-center-btn"><img src=icons/center-text-alignment.png></button>
+                    <button class="txt-right-btn"><img src=icons/align-to-right.png></button>
                 </div>
                 <div class="row3">
                     <label for="fontList"></label>
-                <select id="fontList" name="fontList" class="combobox" onchange=setFont(fontList.value)>
-                    <option value="Impact">Impact</option>
-                    <option value="Langar">Langar</option>
-                    <option value="Montserrat">Montserrat</option>
-                    <option value="Montserrat-thin">Montserrat-thin</option>
-                </select>
-                
-                <button class="txt-shadow-btn">✢</button>
-                <button class="chng-color-btn">✢</button>
-            </div>
-            <div class="row4">
-                <label for="stickers"></label>
-                <select id="stickers" name="stickers" class="sticker-box" onchange=setSticker(stickers.value)>
-                    <option value="sticker1">🎓</option>
-                    <option value="sticker2">🎁</option>
-                    <option value="sticker3">🎀</option>
-                </select>
-            </div>
-            <button class="share-btn">Share</button>
-            <!-- <button class="clear-btn" onclick="clearCanvas()">Clear</button>
+                    <select id="fontList" name="fontList" class="combobox" onchange=setFont(fontList.value)>
+                        <option value="Impact">Impact</option>
+                        <option value="Langar">Langar</option>
+                        <option value="Montserrat">Montserrat</option>
+                        <option value="Montserrat-thin">Montserrat-thin</option>
+                    </select>
+
+                    <button class="txt-stroke-btn"><img src=icons/text-stroke.png></button>
+                    <button class="chng-color-btn"><img src=icons/paint-board-and-brush.png></button>
+                </div>
+                <div class="row4">
+                    <label for="stickers"></label>
+                    <select id="stickers" name="stickers" class="sticker-box" onchange=setSticker(stickers.value)>
+                        <option value="sticker1">🎓</option>
+                        <option value="sticker2">🎁</option>
+                        <option value="sticker3">🎀</option>
+                    </select>
+                </div>
+                <button class="share-btn">Share</button>
+                <!-- <button class="clear-btn" onclick="clearCanvas()">Clear</button>
             <button class="download-btn">Download</button> -->
 
             </div>
