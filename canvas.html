@@ -10,81 +10,84 @@
 
 <body onload="onInitCanvas()">
     <div class="main-container">
-        <div class="nav-bar flex space-between">
-            <div class="nav-logo logo">memegen</div>
+        <header>
+            <div class="nav-bar main-layout flex space-between">
+                <div class="nav-logo logo">memegen</div>
 
-            <ul class="main-nav clean-list">
+                <ul class="main-nav clean-list">
 
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="#">About</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="#">About</a></li>
 
-            </ul>
-        </div>
-
-        <div class="middle">
-            <div class="canvas-container">
-                <canvas id="my-canvas" height="500" width="500" letter-spacing="2.5px"></canvas>
+                </ul>
             </div>
-            <div class="side-bar">
-                <input type="text" value="" class="input-txt-box" onkeyup="txtToCanvasEvent(this.value)">
-                <div class="row1">
-                    <button class="up-down-btn" onclick="changeRow()"><img src=icons/up-and-down.png></button>
-                    <button class="add-btn" onclick="addRow()"><img src=icons/add.png></button>
-                    <button class="delete-btn" onclick="delBtnEvent()"><img src=icons/trash.png></button>
+        </header>
+        <div class="middle-area ">
+            <div class="middle main-layout">
+                <div class="canvas-container">
+                    <canvas class="canvas" id="my-canvas" height="500" width="500" letter-spacing="2.5px"></canvas>
                 </div>
-                <div class="row2">
-                    <button class="increase-btn" onclick="changeFontSize('increase')"><img
-                            src=icons/increase-font-icon.png></button>
-                    <button class="decrease-btn" onclick="changeFontSize('decrease')"><img
-                            src=icons/decrease-font-icon.png></button>
-                    <button class="txt-right-btn" onclick="changeAlignment('right')"><img
-                            src=icons/align-to-left.png></button>
-                    <button class="txt-center-btn" onclick="changeAlignment('center')"><img
-                            src=icons/center-text-alignment.png></button>
-                    <button class="txt-left-btn" onclick="changeAlignment('left')"><img
-                            src=icons/align-to-right.png></button>
+                <div class="side-bar">
+                    <input type="text" value="" class="input-txt-box" onkeyup="txtToCanvasEvent(this.value)">
+                    <div class="row1">
+                        <button class="up-down-btn" onclick="changeRow()"><img src=icons/up-and-down.png></button>
+                        <button class="add-btn" onclick="addRow()"><img src=icons/add.png></button>
+                        <button class="delete-btn" onclick="delBtnEvent()"><img src=icons/trash.png></button>
+                    </div>
+                    <div class="row2">
+                        <button class="increase-btn" onclick="changeFontSize('increase')"><img
+                                src=icons/increase-font-icon.png></button>
+                        <button class="decrease-btn" onclick="changeFontSize('decrease')"><img
+                                src=icons/decrease-font-icon.png></button>
+                        <button class="txt-right-btn" onclick="changeAlignment('right')"><img
+                                src=icons/align-to-left.png></button>
+                        <button class="txt-center-btn" onclick="changeAlignment('center')"><img
+                                src=icons/center-text-alignment.png></button>
+                        <button class="txt-left-btn" onclick="changeAlignment('left')"><img
+                                src=icons/align-to-right.png></button>
+                    </div>
+                    <div class="row3">
+                        <label for="fontList"></label>
+                        <select id="fontList" name="fontList" class="combobox" onchange=setFont(fontList.value)>
+                            <option value="Impact">Impact</option>
+                            <option value="Langar">Langar</option>
+                            <option value="Montserrat">Montserrat</option>
+                            <option value="Montserrat-thin">Montserrat-thin</option>
+                        </select>
+
+                        <button class="chng-strokecolor-btn"><img src=icons/text-stroke.png onclick="onStrokeClick()">
+                            <input type="color" id="strokeColor" name="stroke-color" form="frmRegister" value="#000000"
+                                class="stroke-color" onchange="setStrokeColor(strokeColor.value)" hidden /></button>
+
+                        <button class="chng-fillcolor-btn"><img src=icons/paint-board-and-brush.png
+                                onclick="onFillClick()"><input type="color" id="fillColor" name="fill-color"
+                                form="frmRegister" value="#FFFFFF" class="fill-color"
+                                onchange="setFillColor(fillColor.value)" hidden /></button>
+
+                    </div>
+                    <div class="row4">
+                        <label for="stickers"></label>
+                        <select id="stickers" name="stickers" class="sticker-box" onchange=setSticker(stickers.value)>
+                            <option value="sticker1">🎓</option>
+                            <option value="sticker2">🎁</option>
+                            <option value="sticker3">🎀</option>
+                        </select>
+                    </div>
+                    <div class="row5">
+                        <button class="download-btn">Download</button>
+                        <button class="save-btn" onclick="clearCanvas()">Save</button>
+                        <button class="share-btn">Share</button>
+                    </div>
+
                 </div>
-                <div class="row3">
-                    <label for="fontList"></label>
-                    <select id="fontList" name="fontList" class="combobox" onchange=setFont(fontList.value)>
-                        <option value="Impact">Impact</option>
-                        <option value="Langar">Langar</option>
-                        <option value="Montserrat">Montserrat</option>
-                        <option value="Montserrat-thin">Montserrat-thin</option>
-                    </select>
-
-                    <button class="txt-stroke-btn"><img src=icons/text-stroke.png></button>
-                    <button class="chng-color-btn"><img src=icons/paint-board-and-brush.png></button>
-
-
-                    <!-- <input type="color" id="bcgColor" name="bcg-color" style="opacity: 0" "frmRegister" value="#ff0000" 
-                    class="bcg-color" onchange="setBcgColor(bcgColor.value)" />
-
-                    <input type="color" id="paintColor" name="paint-color" form="frmRegister" value="#000000"
-                    class="paint-color" onchange="setPaintColor(paintColor.value)" /> -->
-
-
-                </div>
-                <div class="row4">
-                    <label for="stickers"></label>
-                    <select id="stickers" name="stickers" class="sticker-box" onchange=setSticker(stickers.value)>
-                        <option value="sticker1">🎓</option>
-                        <option value="sticker2">🎁</option>
-                        <option value="sticker3">🎀</option>
-                    </select>
-                </div>
-                <div class="row5">
-                    <button class="download-btn">Download</button>
-                    <button class="save-btn" onclick="clearCanvas()">Save</button>
-                    <button class="share-btn">Share</button>
-                </div>
-
             </div>
         </div>
-        <div class="footer">
-            <div class="footer-logo logo">memegen</div>
-            <small>all rights reserved 2019</small>
-        </div>
+        <footer class="main-footer">
+            <div class="footer main-layout">
+                <div class="footer-logo logo">memegen</div>
+                <small>all rights reserved 2019</small>
+            </div>
+        </footer>
     </div>
     <script src="js/util.js"></script>
     <script src="js/storage-service.js"></script>

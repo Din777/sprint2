@@ -51,6 +51,7 @@ h1 {
 .main-header {
     height: 130px;
     background-color: #292929;
+    /* background-color: rgb(255, 255, 255); */
 }
 
 .main-header .header-logo {
