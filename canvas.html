@@ -23,21 +23,26 @@
 
         <div class="middle">
             <div class="canvas-container">
-                <canvas id="my-canvas" height="500" width="500" letter-spacing="2.5px" onclick="draw(event)"></canvas>
+                <canvas id="my-canvas" height="500" width="500" letter-spacing="2.5px"></canvas>
             </div>
             <div class="side-bar">
                 <input type="text" value="" class="input-txt-box" onkeyup="txtToCanvasEvent(this.value)">
                 <div class="row1">
-                    <button class="up-down-btn"><img src=icons/up-and-down.png></button>
-                    <button class="add-btn"><img src=icons/add.png></button>
+                    <button class="up-down-btn" onclick="changeRow()"><img src=icons/up-and-down.png></button>
+                    <button class="add-btn" onclick="addRow()"><img src=icons/add.png></button>
                     <button class="delete-btn" onclick="delBtnEvent()"><img src=icons/trash.png></button>
                 </div>
                 <div class="row2">
-                    <button class="increase-btn"><img src=icons/increase-font-icon.png></button>
-                    <button class="decrease-btn"><img src=icons/decrease-font-icon.png></button>
-                    <button class="txt-left-btn"><img src=icons/align-to-left.png></button>
-                    <button class="txt-center-btn"><img src=icons/center-text-alignment.png></button>
-                    <button class="txt-right-btn"><img src=icons/align-to-right.png></button>
+                    <button class="increase-btn" onclick="changeFontSize('increase')"><img
+                            src=icons/increase-font-icon.png></button>
+                    <button class="decrease-btn" onclick="changeFontSize('decrease')"><img
+                            src=icons/decrease-font-icon.png></button>
+                    <button class="txt-right-btn" onclick="changeAlignment('right')"><img
+                            src=icons/align-to-left.png></button>
+                    <button class="txt-center-btn" onclick="changeAlignment('center')"><img
+                            src=icons/center-text-alignment.png></button>
+                    <button class="txt-left-btn" onclick="changeAlignment('left')"><img
+                            src=icons/align-to-right.png></button>
                 </div>
                 <div class="row3">
                     <label for="fontList"></label>
@@ -50,6 +55,15 @@
 
                     <button class="txt-stroke-btn"><img src=icons/text-stroke.png></button>
                     <button class="chng-color-btn"><img src=icons/paint-board-and-brush.png></button>
+
+
+                    <!-- <input type="color" id="bcgColor" name="bcg-color" style="opacity: 0" "frmRegister" value="#ff0000" 
+                    class="bcg-color" onchange="setBcgColor(bcgColor.value)" />
+
+                    <input type="color" id="paintColor" name="paint-color" form="frmRegister" value="#000000"
+                    class="paint-color" onchange="setPaintColor(paintColor.value)" /> -->
+
+
                 </div>
                 <div class="row4">
                     <label for="stickers"></label>
@@ -59,9 +73,11 @@
                         <option value="sticker3">🎀</option>
                     </select>
                 </div>
-                <button class="share-btn">Share</button>
-                <!-- <button class="clear-btn" onclick="clearCanvas()">Clear</button>
-            <button class="download-btn">Download</button> -->
+                <div class="row5">
+                    <button class="download-btn">Download</button>
+                    <button class="save-btn" onclick="clearCanvas()">Save</button>
+                    <button class="share-btn">Share</button>
+                </div>
 
             </div>
         </div>
@@ -70,9 +86,10 @@
             <small>all rights reserved 2019</small>
         </div>
     </div>
+    <script src="js/util.js"></script>
     <script src="js/storage-service.js"></script>
-    <script src="js/gallery-controller.js"></script>
     <script src="js/gallery-service.js"></script>
+    <script src="js/gallery-controller.js"></script>
     <script src="js/canvas.js"></script>
 
 </body>

@@ -7,6 +7,8 @@ var currImgSrc;
 var gBaseImage;
 var gMeme;
 var gCurrId;
+var gStep = 2;
+var gCurrRow;
 
 function onInitCanvas() {
   gCurrId = loadFromStorage(TEMP_STORAGE_KEY);
@@ -21,8 +23,11 @@ function createMeme(gCurrId) {
     selectedLineIdx: 0,
     lines: [
       {
-        txt: 'Hello',
+        x: 250,
+        y: 50,
+        txt: '',
         size: 44,
+        font:'Impact',
         align: 'center',
         color: 'white'
       }
@@ -49,37 +54,106 @@ function makeBase() {
 function txtToCanvasEvent(value) {
   updateGMemeTxt(value);
   clearCanvas();
-  gCtx.drawImage(gBaseImage, 0, 0);
+  //gCtx.drawImage(gBaseImage, 0, 0);
   drawTextFromGMeme();
 }
 
 function updateGMemeTxt(str) {
-  gMeme.lines[0].txt = str;
+  gMeme.lines[gMeme.selectedLineIdx].txt = str;
 }
 
 function clearCanvas() {
   gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height)
+  gCtx.drawImage(gBaseImage, 0, 0);
 }
 
 function drawTextFromGMeme(x = 250, y = 50) {
   // same: var lines = gMeme.lines;
   // var obj = lines[0];
   // console.log('obj.txt', obj.txt);
-  var text = gMeme.lines[0].txt;
-  gCtx.lineWidth = '3'
-  gCtx.strokeStyle = 'black'
-  gCtx.fillStyle = gMeme.lines[0].color
-  // same: gCtx.font = 'gMeme.lines[0].size, Impact'
-  var fontStr = "Impact"
-  var sizeFont = '' + gMeme.lines[0].size + 'px' + ' ' + fontStr;
-  gCtx.font = sizeFont;
-  gCanvas.style.letterSpacing = '2px';
-  gCtx.textAlign = gMeme.lines[0].align
-  gCtx.strokeText(text, x, y)
-  gCtx.fillText(text, x, y)
+  for (var i = 0; i < gMeme.lines.length; i++) {
+    var text = gMeme.lines[i].txt;
+    gCtx.lineWidth = '3'
+    gCtx.strokeStyle = 'black'
+    gCtx.fillStyle = gMeme.lines[i].color
+    // same: gCtx.font = 'gMeme.lines[0].size, Impact'
+    var sizeFont = '' + gMeme.lines[i].size + 'px' + ' ' + gMeme.lines[i].font;
+    gCtx.font = sizeFont;
+    gCanvas.style.letterSpacing = '2px';
+    gCtx.textAlign = gMeme.lines[i].align
+    gCtx.strokeText(text, gMeme.lines[i].x, gMeme.lines[i].y)
+    gCtx.fillText(text, gMeme.lines[i].x, gMeme.lines[i].y)
+    if(i === gMeme.selectedLineIdx){
+      drawRect(20, gMeme.lines[i].y-50 )
+    }
+  }
 }
 
 function delBtnEvent() {
   txtToCanvasEvent('');
   document.querySelector('.input-txt-box').value = '';
+}
+
+function changeFontSize(value) {
+  if (value === 'increase') updateGMemeSize(gStep)
+  else updateGMemeSize(-gStep);
+  clearCanvas();
+  drawTextFromGMeme();
+}
+
+function updateGMemeSize(step) {
+  console.log(step);
+  gMeme.lines[gMeme.selectedLineIdx].size += step;
+}
+
+function changeAlignment(align) {
+  if (align === 'left') gMeme.lines[gMeme.selectedLineIdx].align = 'left'
+  else if (align === 'right') gMeme.lines[gMeme.selectedLineIdx].align = 'right'
+  else gMeme.lines[gMeme.selectedLineIdx].align = 'center'
+  clearCanvas();
+  drawTextFromGMeme();
+}
+
+function setFont(type) {
+  gMeme.lines[gMeme.selectedLineIdx].font = type;
+  clearCanvas();
+  drawTextFromGMeme();
+}
+
+function drawRect(x, y) {
+  gCtx.beginPath()
+  gCtx.strokeStyle = 'black'
+  gCtx.rect(x, y, gCanvas.width - (x * 2), 60) // x,y,widht,height
+  gCtx.lineWidth = '1'
+  gCtx.stroke()
+  // gCtx.globalAlpha = 0.8;
+  // gCtx.fillStyle = 'white';
+  // gCtx.fillRect(x, y, 44, 44)
+}
+
+function addRow() {
+  if (gMeme.lines.length > 2) {
+    alert ('No more lines!')
+    return;
+  }
+  var line = {
+    x: 250,
+    y: rowLocation[gMeme.lines.length],
+    txt: 'hello',
+    size: 44,
+    font: 'Impact',
+    align: 'center',
+    color: 'white'
+  };
+  gMeme.lines.push(line);
+  gMeme.selectedLineIdx=gMeme.lines.length-1;
+  document.querySelector('.input-txt-box').value = '';
+}
+
+function changeRow() {
+  gCurrRow=gMeme.selectedLineIdx;
+  if (gCurrRow< gMeme.lines.length-1) gMeme.selectedLineIdx++;
+  else gMeme.selectedLineIdx=0;
+  clearCanvas();
+  drawTextFromGMeme();
 }

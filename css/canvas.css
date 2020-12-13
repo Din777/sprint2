@@ -134,6 +134,20 @@ input {
     justify-content: space-evenly;
 }
 
+.row5 {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.row5 button {
+    width: 120px;
+    height: 60px;
+    background-color: #ff7f00;
+    font-family: Montserrat-medium, sans-serif;
+    font-size: 20px;
+    color: #ffffff;
+}
+
 .combobox {
     font-size: 19px;
     font-family: Montserrat, sans-serif;
@@ -151,7 +165,7 @@ input {
     border: 0;
 }
 
-.share-btn {
+/* .share-btn {
     width: 120px;
     height: 60px;
     background-color: #ff7f00;
@@ -159,7 +173,7 @@ input {
     font-size: 20px;
     color: #ffffff;
     margin-inline-start: 250px;
-}
+} */
 
 canvas {
     /* border: 1px solid black; */

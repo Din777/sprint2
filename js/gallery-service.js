@@ -73,6 +73,11 @@ function _createImgs() {
                 imgUrl: 'img/11.jpg',
                 keywords: ['cartoon', 'speaking']
             },
+            {
+                id: makeId(),
+                imgUrl: 'img/12.jpg',
+                keywords: ['animal', 'monkey']
+            },
             
 
         ];

@@ -18,6 +18,11 @@ img {
 
 /* GALLERY */
 
+.main {
+    display: flex;
+    justify-content: center;
+}
+
 .grid-container {
     display: grid;
     grid-template-columns: repeat(4, 300px);
@@ -26,21 +31,6 @@ img {
     position: absolute;
 }
 
-/* CANVAS */
-
-.main-container {
-    width: 1280px;
-    height: 680px;
-    background-image: url(..//img/Background.jpg);
-    background-repeat: no-repeat;
-    overflow: hidden;
-}
-
-canvas {
-    border: 1px solid black;
-    display: block;
-    margin: 0 auto;
-}
 
 /* /////////////////////////////////////// */
 
@@ -52,6 +42,11 @@ canvas {
 }
 
 /* HEADER */
+h1 {
+    color: rgb(236, 157, 53);
+    text-align: center;
+    font-size: 44px;
+}
 
 .main-header {
     height: 130px;
