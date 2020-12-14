@@ -48,7 +48,9 @@ function makeBase() {
   gBaseImage = new Image();
   gBaseImage.src = currImgSrc;
   gBaseImage.onload = function () {
-    gCtx.drawImage(gBaseImage, 0, 0);
+    //gCtx.drawImage(gBaseImage, 0, 0);
+    gCtx.drawImage(gBaseImage, 0, 0, gBaseImage.width,    gBaseImage.height,     // source rectangle
+      0, 0, gCanvas.width, gCanvas.height); // destination rectangle
   }
 }
 
@@ -65,9 +67,13 @@ function updateGMemeTxt(str) {
 
 function clearCanvas() {
   gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height)
-  gCtx.drawImage(gBaseImage, 0, 0);
+  gCtx.drawImage(gBaseImage, 0, 0, gBaseImage.width,    gBaseImage.height,     // source rectangle
+    0, 0, gCanvas.width, gCanvas.height); // destination rectangle
 }
 
+function clearMessageBox(){
+  document.querySelector('.input-txt-box').value = '';
+}
 function drawTextFromGMeme(x = 250, y = 50) {
   // same: var lines = gMeme.lines;
   // var obj = lines[0];
@@ -177,3 +183,94 @@ function setFillColor(fillColor) {
   clearCanvas();
   drawTextFromGMeme();
 }
+
+function downloadImg(elLink) {
+  var imgContent = gCanvas.toDataURL('image/jpeg');
+  elLink.href = imgContent;
+}
+
+function downloadBtnClicked() {
+  document.querySelector('.dwnld').click()
+}
+
+//Share button
+
+function uploadImg(elForm, ev) {
+  ev.preventDefault();
+  document.getElementById('imgData').value = gCanvas.toDataURL("image/jpeg");
+
+  // A function to be called if request succeeds
+  function onSuccess(uploadedImgUrl) {
+      uploadedImgUrl = encodeURIComponent(uploadedImgUrl)
+      document.querySelector('.share-container').innerHTML = `
+      <a class="btn" href="https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}'); return false;">
+         Share   
+      </a>`
+  }
+
+  doUploadImg(elForm, onSuccess);
+}
+
+//########### image Add section ##############
+
+function onAddImgClicked(){
+  document.querySelector('.file-input-btn').click()
+}
+
+function onImgInput(ev) {
+  loadImageFromInput(ev)
+}
+
+function loadImageFromInput(ev, onImageReady) {
+  document.querySelector('.share-container').innerHTML = ''
+  var reader = new FileReader();
+
+  reader.onload = function (event) {
+     // var img = new Image();
+    //  img.onload = onImageReady.bind(null, img)
+      currImgSrc = event.target.result;
+      clearMessageBox();
+      makeBase();
+  }
+  reader.readAsDataURL(ev.target.files[0]);
+}
+
+//upload Img from the PC
+function doUploadImg(elForm, onSuccess) {
+  var formData = new FormData(elForm);
+  fetch('http://ca-upload.com/here/upload.php', {
+      method: 'POST',
+      body: formData
+  })
+  .then(function (res) {
+      return res.text()
+  })
+  .then(onSuccess)
+  .catch(function (err) {
+      console.error(err)
+  })
+}
+
+function saveCurrEl(currEl) {
+  savecCurrImgsToStorage(currEl);
+}
+
+
+// function clickCanvas(ev) {
+//   let { offsetX, offsetY } = ev;
+// }
+// function canvasMouseMove(ev) {
+//   // console.log('moveX',ev.movementX,'moveY',ev.movementY)
+//   if (!gBrushActive) return;
+//   let { offsetX, offsetY } = ev;
+//   drawShape(offsetX, offsetY);
+// }
+  
+  
+//   function drawShape(x, y) {
+//       if (gIsColorFX) nextColor();
+  
+//       gCtx.strokeStyle = gStrokeColor;
+//       gCtx.fillStyle = gFillColor;
+//       drawFunc(gShape)(x, y);
+//   }

@@ -25,7 +25,11 @@
         <div class="middle-area ">
             <div class="middle main-layout">
                 <div class="canvas-container">
-                    <canvas class="canvas" id="my-canvas" height="500" width="500" letter-spacing="2.5px"></canvas>
+
+
+
+                    <canvas class="canvas" id="my-canvas" height="500" width="500" letter-spacing="2.5px" onclick="clickCanvas(event)"
+                    onmousemove="canvasMouseMove(event)" onmousedown="canvasMouseDown(event)"></canvas>
                 </div>
                 <div class="side-bar">
                     <input type="text" value="" class="input-txt-box" onkeyup="txtToCanvasEvent(this.value)">
@@ -74,9 +78,14 @@
                         </select>
                     </div>
                     <div class="row5">
-                        <button class="download-btn">Download</button>
-                        <button class="save-btn" onclick="clearCanvas()">Save</button>
-                        <button class="share-btn">Share</button>
+                        <button class="download-btn" onclick="downloadBtnClicked()">Download<a href="#" class="dwnld" onclick="downloadImg(this)" download="a.gif"></a></button>
+                        <button class="addImg-btn" onclick="onAddImgClicked()">Add image<input type="file" name="image" class="file-input-btn" onchange="onImgInput(event)"hidden /></button>
+                        <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
+                            <input name="img" id="imgData" type="hidden" />
+                            <button class="btn" type="submit">Share</button>
+                           
+                            <div class="share-container"></div>
+                          </form>
                     </div>
 
                 </div>

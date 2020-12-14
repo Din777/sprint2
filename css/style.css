@@ -43,7 +43,8 @@ img {
 
 /* HEADER */
 h1 {
-    color: rgb(236, 157, 53);
+    /* color: rgb(236, 157, 53); */
+    color: #ff7f00;
     text-align: center;
     font-size: 44px;
 }

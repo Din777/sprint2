@@ -22,11 +22,9 @@ function renderImgs() {
     <a href="canvas.html" class="hm-link" onclick="saveCurrEl(${img.id})"><img src="${img.imgUrl}" alt="" data="${img.id}" class="gallery-img"></a>
     `
     })
-    console.log(strHtmls);
     document.querySelector('.grid-container').innerHTML = strHtmls.join('')
 }
 
 
-function saveCurrEl(currEl) {
-   savecCurrImgsToStorage(currEl);
-}
+
+
