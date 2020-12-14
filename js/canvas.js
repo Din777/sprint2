@@ -221,13 +221,9 @@ function onImgInput(ev) {
   loadImageFromInput(ev)
 }
 
-function loadImageFromInput(ev, onImageReady) {
-  document.querySelector('.share-container').innerHTML = ''
+function loadImageFromInput(ev) {
   var reader = new FileReader();
-
   reader.onload = function (event) {
-     // var img = new Image();
-    //  img.onload = onImageReady.bind(null, img)
       currImgSrc = event.target.result;
       clearMessageBox();
       makeBase();
